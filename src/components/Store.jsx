@@ -1,13 +1,16 @@
-import React, {useState} from 'react';
-import IconSwitch from './IconSwitch.jsx';
-import ShopCard from './ShopCard.jsx';
-import CardsView from './CardsView.jsx';
-import ShopItem from './ShopItem.jsx';
-import ListView from './ListView.jsx';
+import React, { useState } from 'react'; // Импорт библиотеки React и хука useState
+import IconSwitch from './IconSwitch.jsx'; // Импорт компонента IconSwitch
+import ShopCard from './ShopCard.jsx'; // Импорт компонента ShopCard
+import CardsView from './CardsView.jsx'; // Импорт компонента CardsView
+import ShopItem from './ShopItem.jsx'; // Импорт компонента ShopItem
+import ListView from './ListView.jsx'; // Импорт компонента ListView
 
+// Определение функционального компонента Store
 const Store = () => {
+  // Состояние для хранения текущей иконки отображения (карточки или список)
   const [icon, setIcon] = useState("view_module");
 
+  // Массив товаров
   const products = [{
     name: "Nike Metcon 2",
     price: "130",
@@ -41,12 +44,13 @@ const Store = () => {
   }];
 
   return (
-    <div className="store">
+    <div className="store"> {/* Контейнер для компонента Store */}
+      {/* Компонент для переключения режима отображения */}
       <IconSwitch icon={icon} onSwitch={() => icon === "view_module" ? setIcon("view_list") : setIcon("view_module")}/>
+      {/* Условный рендеринг: если выбрана иконка "view_module", то отображается компонент ListView, иначе - CardsView */}
       {icon === "view_module" ? <ListView items={products}/> : <CardsView cards={products}/>}
     </div>
   );
 };
 
-export default Store;
-
+export default Store; // Экспорт компонента Store по умолчанию
